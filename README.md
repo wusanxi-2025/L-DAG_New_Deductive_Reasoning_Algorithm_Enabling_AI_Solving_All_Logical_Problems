@@ -11,6 +11,7 @@ Each cycle uses simple logical operations (OR, AND, NOT) to progressively restri
 __Examples__
 
 ![ Figure 1 | L-DAG for Example 2](./example2.png)
+
 *Figure 1. L-DAG workflow for Example 2.*
 
 The combination of Figure 6a and Figure 6b in Section 3.2: 61 nodes and 89 deductive steps, with the longest reasoning chain spanning 17 steps. Despite this complexity, the problem is solvable through the sequential application of basic logical operations, as detailed in an introductory example in Section 2.3.
@@ -19,7 +20,7 @@ Two logical examples in the paper were tested on the leading AI systems. None of
 
 | __LLM (Version)__               | Example 2 - Reasoning | Example 2 - Python | Example 2 - MiniZinc | Example 3 (3 Solutions) - Reasoning  | Example 3 - Python | Example 3 - MiniZinc |
 |---------------------------------|-----------------------|--------------------|----------------------|--------------------------------------|--------------------|----------------------|
-| __Gemini Pro 2.5 (2025-06-05)__ | x*                    | x*                 | failed               | 1                                    | 1                  | 1                    |
+| __Gemini Pro 2.5 (2025-06-05)__ | x                     | x                  | failed               | 1                                    | 1                  | 1                    |
 | __ChatGPT 4o (2025-04-16)__     | X                     | x                  | failed               | 1                                    | 1                  | failed               |
 | __DeepSeek r1 (2025-05-28)__    | X                     | x                  | x                    | 1                                    | 2                  | 1                    |
 | __Claude Sonnet 4 (2025-05-22)__| X                     | x                  | x                    | x                                    | 1                  | 1                    |
