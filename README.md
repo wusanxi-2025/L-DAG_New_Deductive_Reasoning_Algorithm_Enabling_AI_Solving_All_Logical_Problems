@@ -21,10 +21,10 @@ Two logical examples in the paper were tested on the leading AI systems. None of
 | __LLM (Version)__               | Example 2 - Reasoning | Example 2 - Python | Example 2 - MiniZinc | Example 3 (3 Solutions) - Reasoning  | Example 3 - Python | Example 3 - MiniZinc |
 |---------------------------------|-----------------------|--------------------|----------------------|--------------------------------------|--------------------|----------------------|
 | __Gemini Pro 2.5 (2025-06-05)__ | x                     | x                  | failed               | 1                                    | 1                  | 1                    |
-| __ChatGPT 4o (2025-04-16)__     | X                     | x                  | failed               | 1                                    | 1                  | failed               |
-| __DeepSeek r1 (2025-05-28)__    | X                     | x                  | x                    | 1                                    | 2                  | 1                    |
-| __Claude Sonnet 4 (2025-05-22)__| X                     | x                  | x                    | x                                    | 1                  | 1                    |
-| __Grok 3 (2025-02-17)__         | X                     | x                  | failed               | x                                    | x                  | 1                    |
+| __ChatGPT 4o (2025-04-16)__     | x                     | x                  | failed               | 1                                    | 1                  | failed               |
+| __DeepSeek r1 (2025-05-28)__    | x                     | x                  | x                    | 1                                    | 2                  | 1                    |
+| __Claude Sonnet 4 (2025-05-22)__| x                     | x                  | x                    | x                                    | 1                  | 1                    |
+| __Grok 3 (2025-02-17)__         | x                     | x                  | failed               | x                                    | x                  | 1                    |
 
 *Note: "x" indicates an incorrect solution, and "failed" means the attempt could not compile or run after multiple tries.
 *Example 1 is a complex logical proposition proof (6 variables, 10 premises, 64-row truth table).
