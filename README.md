@@ -27,6 +27,7 @@ Two logical examples in the paper were tested on the leading AI systems. None of
 | __Grok 3 (2025-02-17)__         | x                     | x                  | failed               | x                                    | x                  | 1                    |
 
 *Note: "x" indicates an incorrect solution, and "failed" means the attempt could not compile or run after multiple tries.
+
 *Example 1 is a complex logical proposition proof (6 variables, 10 premises, 64-row truth table).
 
 __Features__
