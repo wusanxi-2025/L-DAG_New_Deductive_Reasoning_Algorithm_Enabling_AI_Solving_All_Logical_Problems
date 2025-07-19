@@ -12,11 +12,13 @@ def parse_logical_expression(expr, variables):
     """Parse a logical expression and return a function to evaluate it"""
     # Clean the expression
     expr = expr.strip()
+    original_expr = expr
     
-    # Handle negation ¬
+    # Handle negation ¬ - be more careful with parentheses
+    expr = re.sub(r'¬\(([^)]+)\)', r'(not (\1))', expr)
     expr = re.sub(r'¬([A-Z])', r'(not \1)', expr)
     
-    # Handle XOR (⊕)
+    # Handle XOR (⊕) - ensure proper spacing
     expr = re.sub(r'([A-Z])\s*⊕\s*([A-Z])', r'xor(\1, \2)', expr)
     
     # Handle biconditional (↔) - must be done before implication
@@ -39,18 +41,23 @@ def parse_logical_expression(expr, variables):
     expr = expr.replace('∧', ' and ')
     expr = expr.replace('∨', ' or ')
     
-    print(f"Parsed expression: {expr}")  # Debug output
+    print(f"Original: {original_expr}")
+    print(f"Parsed: {expr}")
     
     # Create a function to evaluate the expression
     def evaluate(**kwargs):
         # Create local variables for evaluation
-        local_vars = kwargs.copy()
+        local_vars = {}
+        for var in variables:
+            local_vars[var] = bool(kwargs.get(var, False))
         local_vars['xor'] = xor
+        
         try:
             result = eval(expr, {"__builtins__": {}}, local_vars)
-            return result
+            return bool(result)
         except Exception as e:
             print(f"Error evaluating expression: {expr}")
+            print(f"Variables: {local_vars}")
             print(f"Error details: {e}")
             return False
     
@@ -96,27 +103,6 @@ def read_input_file(filename):
     
     return premises, conclusion, sorted(list(variables))
 
-def parse_conclusion(conclusion_str):
-    """Parse the conclusion expression"""
-    # Handle special functions like xor
-    conclusion_str = re.sub(r'xor\((\w+),\s*(\w+)\)', r'xor(\1, \2)', conclusion_str)
-    
-    # Handle logical operators
-    conclusion_str = conclusion_str.replace(' and ', ' and ')
-    conclusion_str = conclusion_str.replace(' or ', ' or ')
-    conclusion_str = conclusion_str.replace(' not ', ' not ')
-    
-    def evaluate(**kwargs):
-        local_vars = kwargs.copy()
-        local_vars['xor'] = xor
-        try:
-            return eval(conclusion_str, {"__builtins__": {}}, local_vars)
-        except:
-            print(f"Error evaluating conclusion: {conclusion_str}")
-            return False
-    
-    return evaluate
-
 def generate_truth_table(input_filename):
     """Generate the truth table from input file"""
     # Check if input file exists
@@ -160,16 +146,16 @@ def generate_truth_table(input_filename):
     
     # Create conclusion evaluator
     try:
-        conclusion_evaluator = parse_conclusion(conclusion)
+        conclusion_evaluator = parse_logical_expression(conclusion, variables)
         print(f"Conclusion: {conclusion}")
     except Exception as e:
         print(f"Error parsing conclusion: {conclusion}")
         print(f"Error: {e}")
         return
     
-    # Create headers - use actual premise text instead of C1, C2, etc.
-    premise_cols = premises  # Use the actual premise text as column headers
-    header = variables + premise_cols + ['All_Premises', 'Conclusion']
+    # Create headers - use actual premise formulas and conclusion formula
+    premise_cols = premises  # Use the actual premise formulas as column headers
+    header = variables + premise_cols + ['All_Premises', conclusion]
     
     # Generate all possible combinations
     num_vars = len(variables)
@@ -192,14 +178,17 @@ def generate_truth_table(input_filename):
         # Check if all premises are true
         all_premises = all(premise_values)
         
-        # Evaluate conclusion only if all premises are true
+        # Always evaluate conclusion for debugging
+        try:
+            conclusion_result = conclusion_evaluator(**var_dict)
+            conclusion_value = int(conclusion_result)
+        except Exception as e:
+            print(f"Error evaluating conclusion with {var_dict}: {e}")
+            conclusion_value = 0
+        
+        # For display, show conclusion value only when all premises are true
         if all_premises:
-            try:
-                conclusion_result = conclusion_evaluator(**var_dict)
-                conclusion_str = str(int(conclusion_result))
-            except Exception as e:
-                print(f"Error evaluating conclusion with {var_dict}: {e}")
-                conclusion_str = "-"
+            conclusion_str = str(conclusion_value)
         else:
             conclusion_str = "-"
         
@@ -226,10 +215,45 @@ def generate_truth_table(input_filename):
     else:
         print("\nNo rows where all premises are true.")
 
+def test_expression():
+    """Test function for debugging specific expressions"""
+    # Test the specific case: (B⊕D)∧¬(C∧G) with B=1, C=0, D=0, G=0
+    variables = ['B', 'C', 'D', 'G']
+    expr = "(B⊕D)∧¬(C∧G)"
+    
+    evaluator = parse_logical_expression(expr, variables)
+    
+    # Test case from Row 2
+    test_vars = {'B': 1, 'C': 0, 'D': 0, 'G': 0}
+    result = evaluator(**test_vars)
+    
+    print(f"\nTest case:")
+    print(f"Expression: {expr}")
+    print(f"Variables: {test_vars}")
+    print(f"Result: {result} ({int(result)})")
+    
+    # Manual calculation
+    B, C, D, G = 1, 0, 0, 0
+    xor_BD = B != D  # 1 != 0 = True
+    and_CG = C and G  # 0 and 0 = False
+    not_and_CG = not and_CG  # not False = True
+    final = xor_BD and not_and_CG  # True and True = True
+    
+    print(f"\nManual calculation:")
+    print(f"B⊕D = {B}⊕{D} = {xor_BD}")
+    print(f"C∧G = {C}∧{G} = {and_CG}")
+    print(f"¬(C∧G) = ¬{and_CG} = {not_and_CG}")
+    print(f"(B⊕D)∧¬(C∧G) = {xor_BD}∧{not_and_CG} = {final}")
+
 def main():
     """Main function to handle command line arguments"""
+    if len(sys.argv) == 2 and sys.argv[1] == "test":
+        test_expression()
+        return
+    
     if len(sys.argv) != 2:
         print("Usage: python script.py <input_filename>")
+        print("       python script.py test  (for testing)")
         print("Example: python script.py problem.txt")
         print("\nInput file format:")
         print("1) premise1")
