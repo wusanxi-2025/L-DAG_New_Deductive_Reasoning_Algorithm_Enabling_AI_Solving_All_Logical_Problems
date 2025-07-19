@@ -1,0 +1,13 @@
+    Variables: {A, B, C, D, E, G}
+    Premises:
+    1) (A⊕B) ↔ ¬C
+    2) C ↔ (¬B ∧ E)
+    3) (¬A ∧ ¬E) → C
+    4) (A ∨ E) → ¬D
+    5) D → (B ∧ C)
+    6) E ↔ (B ∨ ¬D)
+    7) G → A
+    8) G → (C ∧ ¬B)
+    9) (¬E ∧ G) → D
+    10) (A ∧ G) → B
+    Conclusion: (B⊕D)∧¬(C∧G)
