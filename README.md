@@ -16,15 +16,15 @@ __Examples__
 
 The combination of Figure 6a and Figure 6b in Section 3.2: 61 nodes and 89 deductive steps, with the longest reasoning chain spanning 17 steps. Despite this complexity, the problem is solvable through the sequential application of basic logical operations, as detailed in an introductory example in Section 2.3.
 
-Two logical examples in the paper were tested on the leading AI systems. None of the tested systems produced a complete, correct solution using direct reasoning, Python, or MiniZinc. The last full testing on the following models was conducted on July 19, 2025. 
+Two logical examples in the paper were tested on the leading AI systems. None of the tested systems produced a complete, correct solution using direct reasoning, Python, or MiniZinc. The last full testing on the following models was conducted on July 25, 2025. 
 
 | __LLM (Version)__               | Example 2 - Reasoning | Example 2 - Python | Example 2 - MiniZinc | Example 3 (3 Solutions) - Reasoning  | Example 3 - Python | Example 3 - MiniZinc |
 |---------------------------------|-----------------------|--------------------|----------------------|--------------------------------------|--------------------|----------------------|
-| __Gemini Pro 2.5 (2025-06-05)__ | x                     | x                  | failed               | 1                                    | 1                  | 1                    |
+| __Gemini Pro 2.5 (2025-06-05)__ | x                     | x                  | failed               | 1                                    | 1                  | 3                    |
 | __ChatGPT 4o (2025-04-16)__     | x                     | x                  | failed               | 1                                    | 1                  | failed               |
-| __DeepSeek r1 (2025-05-28)__    | x                     | x                  | x                    | 1                                    | 2                  | 1                    |
-| __Claude Sonnet 4 (2025-05-22)__| x                     | x                  | x                    | x                                    | 1                  | 1                    |
-| __Grok 3 (2025-02-17)__         | x                     | x                  | failed               | x                                    | x                  | 1                    |
+| __DeepSeek r1 (2025-05-28)__    | x                     | x                  | x                    | 1                                    | 2                  | 44                   |
+| __Claude Sonnet 4 (2025-05-22)__| x                     | x                  | x                    | x                                    | 1                  | 4                    |
+| __Grok 3 (2025-02-17)__         | x                     | x                  | failed               | x                                    | x                  | 4                    |
 
 *Note: "x" indicates an incorrect solution, and "failed" means the attempt could not compile or run after multiple tries.
 
