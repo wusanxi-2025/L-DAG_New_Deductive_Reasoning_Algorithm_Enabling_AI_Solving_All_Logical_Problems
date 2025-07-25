@@ -24,7 +24,7 @@ Two logical examples in the paper were tested on the leading AI systems. None of
 | __ChatGPT 4o (2025-04-16)__     | x                     | x                  | failed               | 1                                    | 1                  | failed               |
 | __DeepSeek r1 (2025-05-28)__    | x                     | x                  | x                    | 1                                    | 2                  | 44                   |
 | __Claude Sonnet 4 (2025-05-22)__| x                     | x                  | x                    | x                                    | 1                  | 4                    |
-| __Grok 3 (2025-02-17)__         | x                     | x                  | failed               | x                                    | x                  | 4                    |
+| __Grok 3 (2025-02-17)__         | x                     | x                  | failed               | x                                    | x                  | 44                    |
 
 *Note: "x" indicates an incorrect solution, and "failed" means the attempt could not compile or run after multiple tries.
 
