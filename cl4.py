@@ -260,6 +260,19 @@ def generate_truth_table(input_filename):
             writer.writerow([f"# of variables: {num_vars}"])
             writer.writerow([f"# of Premises: {num_premises}"])
             writer.writerow([f"Number of rows in the truth table: {num_rows}"])
+            if valid_rows:
+                writer.writerow([f" Rows where all premises are true: {len(valid_rows)}"])
+                writer.writerow([f" Conclusion values for these rows:"])
+                for row in valid_rows:
+                    row_index = row[0]  # Get the actual index from the first column
+                    var_values = dict(zip(variables, row[1:num_vars+1]))  # Skip index column
+                    writer.writerow([f"  Row {row_index}: {var_values} -> Conclusion: {row[-2]}"])  # Use actual row index
+        
+                writer.writerow([f" Argument validity: {argument_valid} ({'Valid' if argument_valid else 'Invalid'}"])
+            else:
+                writer.writerow([" No rows where all premises are true."])
+                writer.writerow([f" Argument validity: {argument_valid} (Invalid - no valid premise combinations."])
+
     except PermissionError:
         print(f"\nError: Cannot write to '{output_filename}' - file may be open in another program.")
         print("Please close the file in Excel/Notepad and try again, or delete the existing file.")
