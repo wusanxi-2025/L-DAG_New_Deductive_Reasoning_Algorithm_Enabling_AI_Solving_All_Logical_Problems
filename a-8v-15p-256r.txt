@@ -1,0 +1,18 @@
+Variables: {A, B, C, D, E, F, G, H}
+Premises:
+1) (A⊕B) → C
+2) (C ∧ D) → ¬E
+3) (E ∨ F) ↔ G
+4) (¬A ∧ B) → (D ∧ F)
+5) (G ∧ H) → (A ∨ B)
+#6) (¬C ∨ D) → ¬H
+7) (A ∧ ¬B) → (C ∧ ¬E)
+8) (F⊕H) → (D ∨ E)
+9) ¬(A ∧ B ∧ C)
+10) (D ∧ E) → (¬G ∨ F)
+11) (H ∨ G) → (A⊕B)
+12) (¬E ∧ F) ↔ (C ∧ D)
+13) (A ∨ C) → (B ∨ ¬F)
+14) (G ∧ ¬H) → (E ∨ ¬A)
+15) (B ∧ F) → (¬D ∨ H)
+Conclusion: (G ∧ H) ∧ (A ∨ B) ∧ ¬E
