@@ -326,9 +326,9 @@ def write_csv_file(output_filename, header, rows, summary_row, count_0_row, coun
                     
                     if is_premise_col and value in [0, 1]:
                         if value == 0:
-                            formatted_row.append(f"🎀{value}")  # Pink emoji for 0
+                            formatted_row.append(f"{value}")  # Pink emoji for 0
                         else:
-                            formatted_row.append(f"✅{value}")  # Green checkmark for 1
+                            formatted_row.append(f"{value}")  # Green checkmark for 1
                     else:
                         formatted_row.append(str(value))
                 
