@@ -1,0 +1,21 @@
+Variables: {A, B, C, D, E, F, G, H}
+Premises:
+1) (A⊕B) → C
+2) (C ∧ D) → ¬E
+3) (E ∨ F) ↔ G
+4) (¬A ∧ B) → (D ∧ F)
+5) (G ∧ H) → (A ∨ B)
+6) (A ∧ ¬B) → (C ∧ ¬E)
+7) (F⊕H) → (D ∨ E)
+8) (¬A ∧ D⊕F) ↔ (H ∨ ¬E) 
+9) (D ∧ E) → (¬G ∨ F)
+10) (H ∨ G) → (A⊕B)
+11) (¬E ∧ F) ↔ (C ∧ D)
+12) (A ∨ C) → (B ∨ ¬F)
+13) (G ∧ ¬H) → (E ∨ ¬A)
+14) (B ∧ F) → (¬D ∨ H)
+15) (¬A ∨ H) ↔ (E ⊕ D) ∨ (G ∧ ¬C)
+#row 17 all=1: 0	0	0	1	0	0	0	0
+
+Conclusion: (¬B ∨ F⊕H) ↔ (¬D ∨ E)∨ (G ∨¬C)  
+
