@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# https://github.com/wusanxi-2025/L-DAG_New_Deductive_Reasoning_Algorithm_Enabling_AI_Solving_All_Logical_Problems.git
 # Enter your project directory
 cd ./L-DAG_New_Deductive_Reasoning_Algorithm_Enabling_AI_Solving_All_Logical_Problems
 
@@ -28,12 +29,14 @@ cd ./L-DAG_New_Deductive_Reasoning_Algorithm_Enabling_AI_Solving_All_Logical_Pro
 # name="c-v8-DAG.docx"
 # name="./AI_test/Claude-4-2025-08-17-test-example-1.pdf"
 # name="./AI_test/Claude-4-2025-08-14-test-example-2.pdf"
+# name="./AI_test/gemini-2.5-2025-08-17-test-example-1.pdf"
 
 git ls-files
 
-#git rm "tmp"
+name="update.sh"
 
-name="tmp"
+#git rm "$name"
+
 git add "$name"
 
 # Commit with a message (you can edit this)
